@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Event extends Model
+class Reservation extends Model
 {
     use HasFactory;
 
@@ -18,23 +18,28 @@ class Event extends Model
      */
     protected $fillable = [
         'name',
-        'event_type',
+        'event_id',
         'venue_id',
         'end_time'
     ];
 
     /**
-     * An Event must have/belong to a Venue (physical place).
+     * A Reservation is for an Event.
      *
      * @return BelongsTo
      */
-    public function venue(): BelongsTo
+    public function event(): BelongsTo
     {
-        return $this->belongsTo(Venue::class);
+        return $this->belongsTo(Event::class, 'event_id');
     }
 
-    public function reservation(): HasMany
+    /**
+     * A Reservation is for a Seat.
+     *
+     * @return HasOne
+     */
+    public function seat(): HasOne
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasOne(Seat::class, 'venue_id');
     }
 }

@@ -12,6 +12,11 @@ class Permission extends Model
 
     protected $guarded = [];
 
+    /**
+     * Permissions can have/belong to many Roles.
+     *
+     * @return BelongsToMany
+     */
     public function roles(): belongsToMany
     {
         return $this->belongsToMany(Role::class)->withTimestamps();

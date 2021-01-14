@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Event extends Model
+class Subarea extends Model
 {
     use HasFactory;
 
@@ -17,14 +17,16 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'event_type',
         'venue_id',
-        'end_time'
+        'name',
+        'width',
+        'height',
+        'top',
+        'bottom'
     ];
 
     /**
-     * An Event must have/belong to a Venue (physical place).
+     *
      *
      * @return BelongsTo
      */
@@ -33,8 +35,8 @@ class Event extends Model
         return $this->belongsTo(Venue::class);
     }
 
-    public function reservation(): HasMany
+    public function seat(): HasMany
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(Seat::class);
     }
 }

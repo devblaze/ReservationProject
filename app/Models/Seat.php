@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Role extends Model
+class Seat extends Model
 {
     use HasFactory;
 
@@ -16,19 +17,19 @@ class Role extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'event_type',
-        'venue_id',
-        'end_time'
+        'subarea_id',
+        'x',
+        'y',
+        'status'
     ];
 
-    public function permission(): belongsTo
+    /**
+     * A Seat has/belongs to a Subarea.
+     *
+     * @return BelongsTo
+     */
+    public function subarea(): BelongsTo
     {
-        return $this->belongsTo(Permission::class);
-    }
-
-    public function allowTo($permission): void
-    {
-        $this->permission()->save($permission);
+        return $this->belongsTo(Subarea::class);
     }
 }
