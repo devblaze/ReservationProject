@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEventsTable extends Migration
+class CreateSubareasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,23 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::disableForeignKeyConstraints();
+        Schema::create('subareas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('venue_id');
             $table->string('name');
-            $table->string('type');
-            $table->string('end_time');
+            $table->string('width');
+            $table->string('height');
+            $table->string('top');
+            $table->string('bottom');
             $table->timestamps();
+
+            $table->foreign('venue_id')
+                ->references('id')
+                ->on('venues');
+
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -31,6 +39,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('subareas');
     }
 }

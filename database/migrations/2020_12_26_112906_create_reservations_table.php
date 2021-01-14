@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVenuesTable extends Migration
+class CreateReservationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,21 +14,18 @@ class CreateVenuesTable extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('venues', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name');
-            $table->unsignedBigInteger('address_id');
-            $table->integer('subareas');
-            $table->string('img_url');
+            $table->unsignedBigInteger('event_id');
             $table->timestamps();
 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
-            $table->foreign('address_id')
+            $table->foreign('event_id')
                 ->references('id')
-                ->on('addresses');
+                ->on('events');
 
         });
         Schema::enableForeignKeyConstraints();
@@ -41,6 +38,6 @@ class CreateVenuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('venues');
+        Schema::dropIfExists('reservations');
     }
 }
