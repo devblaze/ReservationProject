@@ -1,5 +1,7 @@
 /vendor/
 node_modules/
+/laradock-bootstrap
+/.idea
 npm-debug.log
 yarn-error.log
 
