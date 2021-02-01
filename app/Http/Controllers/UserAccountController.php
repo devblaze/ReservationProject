@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class UserAccountController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,13 +22,14 @@ class HomeController extends Controller
      *
      * @return Renderable
      */
-    public function index(): Renderable
+    public function profile(Request $request): Renderable
     {
-        return view('home');
+        $tes = $request->user();
+        return view('user.profile', ['data' => $tes]);
     }
 
-    public function root(): Renderable
+    public function reservation(): Renderable
     {
-        return view('welcome');
+        return view('user.reservations');
     }
 }

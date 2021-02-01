@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venue;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
 class VenueController extends Controller
@@ -20,11 +21,11 @@ class VenueController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Renderable
      */
-    public function create()
+    public function create(): Renderable
     {
-        //
+        return view('venue.create');
     }
 
     /**
