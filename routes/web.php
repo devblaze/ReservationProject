@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\VenueController;
 use App\Models\Reservation;
@@ -26,9 +26,10 @@ Auth::routes();
 Route::middleware('auth')->group(static function () {
 
     /**
-     * Home test route.
+     * User account routes.
      */
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [UserAccountController::class, 'profile'])->name('user_profile');
+    Route::get('/reservation', [UserAccountController::class, 'reservation'])->name('user_reservation');
 
     /**
      * Reservation routes.
