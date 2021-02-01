@@ -62,8 +62,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('reservation_index') }}"><i class="fas fa-user"></i> Your Profile</a>
-                                    <a class="dropdown-item" href="{{ route('reservation_index') }}"><i class="fas fa-ticket-alt"></i> Your Reservations</a>
+                                    <a class="dropdown-item" href="{{ route('user_profile') }}"><i class="fas fa-user"></i> Your Profile</a>
+                                    <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-ticket-alt"></i> Your Reservations</a>
                                     <hr>
                                     <a class="dropdown-item" href="{{ route('venue_create') }}"><i class="fas fa-plus"></i> Create New Venue</a>
                                     <a class="dropdown-item" href="{{ route('event_create') }}"><i class="fas fa-plus"></i> Create New Event</a>
