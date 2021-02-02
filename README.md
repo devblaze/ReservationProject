@@ -1,13 +1,24 @@
-## ReservationProject
+# ReservationProject
 This is a Reservation project made to help people book their seats in many restaurants, theaters, etc.
 It's the combination of two other projects made into one organized and simpler to use.
 
-Below the projects that were combined to make this one and their creators:
-- [Leonidas Antoniadis](https://github.com/Leonidas-Antoniadis/Reservations)
+Below the creators of the projects that were combined into this one
 
-- [Theodore Zervakis](https://github.com/btx-dev/Ticket-Manager)
+>- [Leonidas Antoniadis](https://github.com/Leonidas-Antoniadis/Reservations)
+>   - Reservations Project coded in Visual Studio IDE with C#.
+>- [Theodore Zervakis](https://github.com/btx-dev/Ticket-Manager)
+>   - Ticket Manager Project coded in Sublime Text Editor with PHP 7.4.
 
-The project is being developed with PHP Framework [Laravel](https://laravel.com/) and for the front end [Vue.js](https://vuejs.org/) JavaScript Framework is used.
+The project's is developed with PHPStrong IDE
+
+The project's backend technologies are the following
+- [PHP 7.3](https://laravel.com/)
+- [Laravel](https://laravel.com/) Framework
+
+The project's frontend technologies are the following
+- [Vue.js](https://vuejs.org/) JavaScript Framework
+- [Bootstrap](https://getbootstrap.com/) CSS Framework
+- SCSS
 
 ***
 
@@ -78,6 +89,7 @@ To check if xDebug works go to
 - Url to validation script: http://127.0.0.1:80
 
 If everything goes well you will see 7 (seven) green checks.
+
 ***
 
 ## Installation
@@ -104,19 +116,19 @@ _*And don't forget to configure your .env file._
 
 ***
 
-## Edit Front End
+## Frontend
 If you want to change something to the front end, JavaScript or SCSS you can use:
 ```
 yarn watch OR npm watch
 ```
 In order for your JS, SCSS files to be updated/compiled everytime without using each time
 ```bash
-yarn OR npm run
+yarn OR npm run dev
 ```
 *Note: Using ``yarn`` because it's quite faster than ``npm``.*-
 
 ***
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+> ## Contributing
+>Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
