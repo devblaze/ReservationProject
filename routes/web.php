@@ -42,6 +42,7 @@ Route::middleware('auth')->group(static function () {
     /**
      * Event routes.
      */
+    Route::post('/event/create', [EventController::class, 'store'])->name('event_store');
     Route::get('/event/create', [EventController::class, 'create'])->name('event_create');
     Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('event_edit');
     Route::get('/event/{id}', [EventController::class, 'show'])->name('event_show');

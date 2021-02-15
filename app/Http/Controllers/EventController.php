@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Venue;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -27,7 +28,7 @@ class EventController extends Controller
      */
     public function create(): Renderable
     {
-        return view('event.create');
+        return view('event.create', ['venues' => Venue::all()]);
     }
 
     /**
@@ -38,13 +39,16 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Event::create($this->validateData($request + [
+            'user_id' => auth()->user()->id
+        ]));
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Event $event
+     * @param Request $request
      * @return Renderable
      */
     public function show(Request $request): Renderable
@@ -56,10 +60,10 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Event  $event
-     * @return Response
+     * @param Event $event
+     * @return Renderable
      */
-    public function edit(Event $event)
+    public function edit(Event $event): Renderable
     {
         return view('event.edit');
     }
@@ -85,5 +89,19 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function validateData(Request $request): array
+    {
+        return $request->validate([
+            'name'      => 'required',
+            'type'      => 'required',
+            'venue_id'  => 'required',
+            'end_time'  => 'required'
+        ]);
     }
 }

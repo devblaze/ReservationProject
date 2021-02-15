@@ -33,6 +33,11 @@ class Event extends Model
         return $this->belongsTo(Venue::class);
     }
 
+    /**
+     * An event can have more than one reservations.
+     *
+     * @return HasMany
+     */
     public function reservation(): HasMany
     {
         return $this->hasMany(Reservation::class);
