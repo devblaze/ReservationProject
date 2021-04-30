@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Address extends Model
 {
@@ -21,4 +22,13 @@ class Address extends Model
         'postal_code',
         'comments'
     ];
+
+    public static function validateAddress(Request $data): array
+    {
+        return $data->validate([
+            'street_name' => 'required',
+            'postal_code' => 'required',
+            'region'      => 'required'
+        ]);
+    }
 }

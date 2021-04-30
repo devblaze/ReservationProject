@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Http\Request;
 
 class Venue extends Model
 {
@@ -24,6 +25,34 @@ class Venue extends Model
         'subareas',
         'img_url'
     ];
+
+    public static function createNew(Request $request, $user)
+    {
+//        $city = City::create(City::validateCity([
+//            'name'    => $request->city,
+//            'country' => $request->country
+//            ])
+//        );
+//
+//        $address = Address::create(Address::validateAddress([
+//            'city_id'     => $city->id,
+//            'region'      => $request->region,
+//            'street_name' => $request->street_name,
+//            'postal_code' => $request->postal_code,
+//            'comments'    => $request->comments
+//            ])
+//        );
+
+        $city = City::create(City::validateCity($request));
+
+        $address = Address::create(Address::validateAddress($request->all() + ['city_id' => $city->id]));
+
+        return self::create([
+            'user_id'    => $user->id,
+            'address_id' => $address->id,
+            ] + self::validateVenue($request)
+        );
+    }
 
     /**
      * A Venue has been created by a User.
@@ -63,5 +92,14 @@ class Venue extends Model
     public function subarea(): HasMany
     {
         return $this->hasMany(Subarea::class);
+    }
+
+    private function validateVenueData(Request $request): array
+    {
+        return $request->validate([
+            'name'       => 'required',
+            'subareas'   => 'required',
+            'img_url'    => 'max:255'
+        ]);
     }
 }

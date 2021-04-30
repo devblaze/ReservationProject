@@ -20,7 +20,7 @@ class CreateAddressesTable extends Migration
             $table->string('region');
             $table->string('street_name');
             $table->string('postal_code');
-            $table->string('comments');
+            $table->string('comments')->nullable();
             $table->timestamps();
 
             $table->foreign('city_id')
@@ -37,6 +37,8 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('addresses');
+        Schema::enableForeignKeyConstraints();
     }
 }

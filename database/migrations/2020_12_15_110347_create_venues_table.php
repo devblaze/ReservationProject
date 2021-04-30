@@ -20,7 +20,7 @@ class CreateVenuesTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('address_id');
             $table->integer('subareas');
-            $table->string('img_url');
+            $table->string('img_url')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -41,6 +41,8 @@ class CreateVenuesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('venues');
+        Schema::enableForeignKeyConstraints();
     }
 }
