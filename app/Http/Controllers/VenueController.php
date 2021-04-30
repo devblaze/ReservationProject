@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Venue;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class VenueController extends Controller
 {
@@ -31,12 +32,13 @@ class VenueController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        Venue::createNew($request, auth()->user());
+        return redirect()->route('event_index');
     }
 
     /**
