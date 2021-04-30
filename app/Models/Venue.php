@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Http\Request;
+use App\Models\City;
 
 class Venue extends Model
 {
@@ -25,34 +26,6 @@ class Venue extends Model
         'subareas',
         'img_url'
     ];
-
-    public static function createNew(Request $request, $user)
-    {
-//        $city = City::create(City::validateCity([
-//            'name'    => $request->city,
-//            'country' => $request->country
-//            ])
-//        );
-//
-//        $address = Address::create(Address::validateAddress([
-//            'city_id'     => $city->id,
-//            'region'      => $request->region,
-//            'street_name' => $request->street_name,
-//            'postal_code' => $request->postal_code,
-//            'comments'    => $request->comments
-//            ])
-//        );
-
-        $city = City::create(City::validateCity($request));
-
-        $address = Address::create(Address::validateAddress($request->all() + ['city_id' => $city->id]));
-
-        return self::create([
-            'user_id'    => $user->id,
-            'address_id' => $address->id,
-            ] + self::validateVenue($request)
-        );
-    }
 
     /**
      * A Venue has been created by a User.
@@ -77,11 +50,11 @@ class Venue extends Model
     /**
      * A Venue has one and only physical address.
      *
-     * @return HasOne
+     * @return BelongsTo
      */
-    public function address(): HasOne
+    public function address(): BelongsTo
     {
-        return $this->hasOne(Address::class, 'address_id');
+        return $this->BelongsTo(Address::class, 'address_id');
     }
 
     /**

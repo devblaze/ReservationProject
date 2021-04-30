@@ -19,7 +19,7 @@ class CreateVenuesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->unsignedBigInteger('address_id');
-            $table->integer('subareas');
+            $table->integer('subareas')->nullable();
             $table->string('img_url')->nullable();
             $table->timestamps();
 

@@ -19,6 +19,7 @@ class CreateAddressesTable extends Migration
             $table->unsignedBigInteger('city_id');
             $table->string('region');
             $table->string('street_name');
+            $table->string('number');
             $table->string('postal_code');
             $table->string('comments')->nullable();
             $table->timestamps();

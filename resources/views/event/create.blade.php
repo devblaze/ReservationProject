@@ -18,31 +18,27 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="1234 Main St">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="A name for the event">
                             </div>
                             <div class="form-group">
                                 <label for="type">Type</label>
-                                <input type="text" class="form-control" id="type" placeholder="1234 Main St">
-                            </div>
-                            <div class="form-group">
-                                <label for="type">Type</label>
-                                <input type="text" class="form-control" id="type" placeholder="1234 Main St">
+                                <input type="text" class="form-control" id="type" name="type" placeholder="Birthday Party, Rave Party, Cinema Night">
                             </div>
                             <label for="inputState">Venue</label>
                             <div class="form-row">
                                 <div class="form-group col-md-10">
-                                    <select id="inputState" class="form-control">
+                                    <select id="venue" name="venue" class="form-control">
                                         <option selected>Choose...</option>
                                         @foreach($venues as $venue)
-                                            <option id="{{ $venue->id }}">{{ $venue->name }}</option>
+                                            <option value="{{ $venue->id }}">{{ $venue->id }}{{ $venue->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col-md-1 text-center justify-content-center align-items-end">
-                                    <button type="submit" class="btn btn-primary">Info</button>
+                                    <a href="{{ route('venue_show', $venue->id) }}" class="btn btn-primary">Info</a>
                                 </div>
                                 <div class="form-group col-md-1 text-center justify-content-center align-items-end">
-                                    <button type="submit" class="btn btn-success">New</button>
+                                    <a href="{{ route('venue_create') }}" class="btn btn-success">New</a>
                                 </div>
                             </div>
 

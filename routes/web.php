@@ -53,6 +53,7 @@ Route::middleware('auth')->group(static function () {
     Route::get('/venue', [VenueController::class, 'index'])->name('venue_index');
     Route::post('/venue/create', [VenueController::class, 'store'])->name('venue_store');
     Route::get('/venue/create', [VenueController::class, 'create'])->name('venue_create');
+    Route::get('/venue/list', [VenueController::class, 'list'])->name('venue_list');
     Route::get('/venue/{id}/edit', [VenueController::class, 'edit'])->name('venue_edit');
     Route::get('/venue/{id}', [VenueController::class, 'show'])->name('venue_show');
 });

@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Address extends Model
 {
@@ -19,16 +20,18 @@ class Address extends Model
         'city_id',
         'region',
         'street_name',
+        'number',
         'postal_code',
         'comments'
     ];
 
-    public static function validateAddress(Request $data): array
+    public function city(): BelongsTo
     {
-        return $data->validate([
-            'street_name' => 'required',
-            'postal_code' => 'required',
-            'region'      => 'required'
-        ]);
+        return $this->belongsTo(City::class);
+    }
+
+    public function venues(): HasMany
+    {
+        return $this->hasMany(Venue::class);
     }
 }
