@@ -27,10 +27,10 @@
                             <label for="inputState">Venue</label>
                             <div class="form-row">
                                 <div class="form-group col-md-10">
-                                    <select id="venue" name="venue" class="form-control">
+                                    <select id="venue" name="venue_id" class="form-control">
                                         <option selected>Choose...</option>
                                         @foreach($venues as $venue)
-                                            <option value="{{ $venue->id }}">{{ $venue->id }}{{ $venue->name }}</option>
+                                            <option value="{{ $venue->id }}">{{ $venue->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

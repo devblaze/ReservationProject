@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [EventController::class, 'index'])->name('event_index');
-//Route::get('/event/show/{id}', [EventController::class, 'show'])->name('event_checkin');
+Route::get('/clearMessage', [EventController::class, 'clearMessage'])->name('clear_message');
 
 Auth::routes();
 
@@ -44,7 +44,10 @@ Route::middleware('auth')->group(static function () {
      */
     Route::post('/event/create', [EventController::class, 'store'])->name('event_store');
     Route::get('/event/create', [EventController::class, 'create'])->name('event_create');
+    Route::get('/event/list', [EventController::class, 'list'])->name('event_list');
     Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('event_edit');
+    Route::get('/event/{id}/cancel', [EventController::class, 'cancel'])->name('event_cancel');
+    Route::get('/event/{id}/delete', [EventController::class, 'destroy'])->name('event_delete');
     Route::get('/event/{id}', [EventController::class, 'show'])->name('event_show');
 
     /**
@@ -54,6 +57,6 @@ Route::middleware('auth')->group(static function () {
     Route::post('/venue/create', [VenueController::class, 'store'])->name('venue_store');
     Route::get('/venue/create', [VenueController::class, 'create'])->name('venue_create');
     Route::get('/venue/list', [VenueController::class, 'list'])->name('venue_list');
-    Route::get('/venue/{id}/edit', [VenueController::class, 'edit'])->name('venue_edit');
-    Route::get('/venue/{id}', [VenueController::class, 'show'])->name('venue_show');
+    Route::get('/venue/{venue}', [VenueController::class, 'show'])->name('venue_show');
+    Route::get('/venue/{venue}/edit', [VenueController::class, 'edit'])->name('venue_edit');
 });

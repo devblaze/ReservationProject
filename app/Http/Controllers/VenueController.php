@@ -33,7 +33,7 @@ class VenueController extends Controller
 
     public function list(): Renderable
     {
-        $userVenueList = auth()->user()->venues;
+        $userVenueList = Venue::where('user_id', auth()->user()->id)->paginate(6);
         return view('venue.list')->with('venueList', $userVenueList);
     }
 
@@ -44,7 +44,7 @@ class VenueController extends Controller
 
     public function edit(Venue $venue)
     {
-        //
+        return view('venue.edit', ['venue' => $venue]);
     }
 
     public function update(Request $request, Venue $venue)

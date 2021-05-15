@@ -56,9 +56,9 @@ class User extends Authenticatable
     /**
      * Assign and save the roles of the user.
      *
-     * @param $role
+     * @param Role $role
      */
-    public function assignRole($role): void
+    public function assignRole(Role $role): void
     {
         $this->roles()->save($role);
     }

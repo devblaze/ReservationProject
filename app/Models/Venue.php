@@ -54,7 +54,7 @@ class Venue extends Model
      */
     public function address(): BelongsTo
     {
-        return $this->BelongsTo(Address::class, 'address_id');
+        return $this->belongsTo(Address::class, 'address_id');
     }
 
     /**
