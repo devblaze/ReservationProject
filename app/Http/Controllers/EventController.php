@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Venue;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 
 class EventController extends Controller
 {
@@ -49,11 +51,22 @@ class EventController extends Controller
         //
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request): Redirector
     {
         $event = Event::find($request->id);
 
-        $event->safeDelete($request);
+        session($event->safeDelete(auth()->user()));
+
+        return redirect(route('event_list'));
+    }
+
+    public function cancel(Request $request): RedirectResponse
+    {
+        $event = Event::find($request->id);
+
+        $result = $event->switchEventStatus(auth()->user());
+
+        session()->put($result);
 
         return redirect(route('event_list'));
     }
@@ -62,6 +75,7 @@ class EventController extends Controller
     {
         session()->forget('type');
         session()->forget('message');
+        session()->forget('messageTimer');
     }
 
     public function validateData(Request $request): array

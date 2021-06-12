@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\ReservationController;
@@ -59,4 +60,10 @@ Route::middleware('auth')->group(static function () {
     Route::get('/venue/list', [VenueController::class, 'list'])->name('venue_list');
     Route::get('/venue/{venue}', [VenueController::class, 'show'])->name('venue_show');
     Route::get('/venue/{venue}/edit', [VenueController::class, 'edit'])->name('venue_edit');
+    Route::post('/venue/update', [VenueController::class, 'update'])->name('venue_update');
+
+    /**
+     * Admin routes
+     */
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin_panel');
 });

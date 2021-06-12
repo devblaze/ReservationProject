@@ -47,9 +47,17 @@ class VenueController extends Controller
         return view('venue.edit', ['venue' => $venue]);
     }
 
-    public function update(Request $request, Venue $venue)
+    public function update(Request $request): RedirectResponse
     {
-        //
+        $this->validateAddress($request);
+        $this->validateCity($request);
+        $this->validateVenue($request);
+
+        $result = ['test' => 'test'];
+
+        session()->put($result);
+
+        return redirect(route('venue_list'));
     }
 
     public function destroy(Venue $venue)
@@ -59,7 +67,7 @@ class VenueController extends Controller
 
     private function validateCity(Request $request): array
     {
-        $request['name']      = $request->city;
+        $request['name'] = $request->city;
         return $request->validate([
             'name'    => 'required',
             'country' => 'required'

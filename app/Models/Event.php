@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Http\Request;
 
 class Event extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -25,16 +25,51 @@ class Event extends Model
         'end_time'
     ];
 
-    public function safeDelete(Request $request): void
+    public function toSearchableArray()
     {
-        if (!$request) {
-            session()->put('danger', 'You do not have permission to do this.');
+        $array = $this->toArray();
+
+        $array = $this->transform($array);
+
+        $array['name'] = $this->name;
+        $array['type'] = $this->type;
+        $array['location'] = $this->venue->address->city->name . ", " . $this->venue->address->city->country;
+
+        return $array;
+    }
+
+    public function safeDelete(User $user): array
+    {
+        if ($user->id === $this->user_id || $user->roles()->first()->label === "Admin") {
+            $noun = $user->id === $this->user_id ? 'your' : 'the';
+            $this->delete();
+            return [
+                'type' => 'success',
+                'message' => 'You have successfully deleted ' . $noun . ' Event.'
+            ];
         }
 
-        session()->put([
-            'type' => 'success',
-            'message' => 'You have successfully deleted your Event!'
-        ]);
+        return [
+            'type' => 'danger',
+            'message' => 'You do not have permission to do this!'
+        ];
+    }
+
+    public function switchEventStatus(User $user): array
+    {
+        if ($user->id === $this->user_id || $user->roles()->first()->label === "Admin") {
+            $this->status = $this->status === "active" ? "canceled" : "active";
+            $this->save();
+            return [
+                'type' => 'success',
+                'message' => 'Your event has been switched to ' . $this->status . ' status.'
+            ];
+        }
+
+        return [
+            'type' => 'danger',
+            'message' => 'You do not have permission to do this!'
+        ];
     }
 
     /**

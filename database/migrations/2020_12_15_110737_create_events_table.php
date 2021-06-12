@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('venue_id');
             $table->string('name');
             $table->string('type');
+            $table->string('status')->default('active');
             $table->string('end_time');
             $table->timestamps();
         });

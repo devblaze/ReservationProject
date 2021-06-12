@@ -1,28 +1,34 @@
 <template>
     <div :class="'alert alert-' + alertClass + ' alert-dismissible fade show'" role="alert"
-    v-show="show"
-    v-text="notification">
-
-        <button type="button" class="close" aria-label="Close"
-        @click="destroyNotification">
-            <span aria-hidden="true">&times;</span>
-        </button>
+         v-show="show"
+         v-text="notification"
+         @click="destroyNotification">
     </div>
 </template>
 
 <style>
+.alert {
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+}
 </style>
 
 <script>
 export default {
-    props: ['type', 'message'],
+    props: {
+        type: String,
+        message: String,
+        messageTimer: Number
+    },
 
     data() {
         return {
             show: false,
             notification: this.message,
             alertClass: this.type,
-            hideTimeout: false
+            hideTimeout: false,
+            timerTimeout: this.timer ? this.timer : 5000
         }
     },
 
@@ -47,7 +53,7 @@ export default {
         hideNotification() {
             this.hideTimeout = setTimeout(() => {
                 this.destroyNotification()
-            }, 5000);
+            }, this.timerTimeout);
         },
 
         destroyNotification() {
