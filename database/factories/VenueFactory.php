@@ -3,8 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\Address;
+use App\Models\City;
 use App\Models\Venue;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\QueryException;
 
 class VenueFactory extends Factory
 {
@@ -22,7 +24,11 @@ class VenueFactory extends Factory
      */
     public function definition()
     {
-        $address = Address::factory()->create();
+        $address = Address::firstWhere('id', $this->faker->numberBetween(1, 100));
+        if (!$address) {
+            $address = Address::factory()->create();
+        }
+
         return [
             'name' => $this->faker->word,
             'subareas' => $this->faker->randomNumber(3),

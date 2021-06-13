@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Address;
 use App\Models\City;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\QueryException;
 
 class AddressFactory extends Factory
 {
@@ -22,11 +23,15 @@ class AddressFactory extends Factory
      */
     public function definition()
     {
-        $city = City::factory()->create();
+        $city = City::firstWhere('id', $this->faker->numberBetween(1, 100));
+        if (!$city) {
+            $city = City::factory()->create();
+        }
+
         return [
-            'region' => $this->faker->locale,
-            'street_name' => $this->faker->address,
-            'number' => $this->faker->randomNumber(2),
+            'region' => $this->faker->name,
+            'street_name' => $this->faker->streetName,
+            'number' => $this->faker->randomNumber(3),
             'postal_code' => $this->faker->postcode,
             'city_id' => $city->id
         ];
