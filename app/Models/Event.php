@@ -34,6 +34,7 @@ class Event extends Model
         $array['name'] = $this->name;
         $array['type'] = $this->type;
         $array['location'] = $this->venue->address->city->name . ", " . $this->venue->address->city->country;
+        $array['country'] = $this->venue->address->city->country;
 
         return $array;
     }
