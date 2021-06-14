@@ -38,7 +38,7 @@
                 <!-- Left side of navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item {{ url()->current() !== route('event_index') ?: 'active' }}">
-                        <a class="nav-link" href="{{ route('event_index') }}">Live Events <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('event_index') }}">Upcoming Events <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Past Events</a>
@@ -103,7 +103,7 @@
     </nav>
 
     <main class="py-4">
-        <div class="container">
+        <div class="container" style="padding: 0px">
             @yield('content')
         </div>
     </main>
