@@ -10,6 +10,7 @@ bootstrap/compiled.php
 app/storage/
 
 # Laravel 5 & Lumen specific
+/public
 public/storage
 public/hot
 storage/*.key
@@ -18,3 +19,6 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+# Laradock
+/laradock-b

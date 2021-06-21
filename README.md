@@ -97,15 +97,53 @@ Use Laradock to run the project, place it inside the project.
 ```bash
 /ReservationProject/laradock-a
 ```
-Edit the .env file of Laradock to your liking. *(Note: Development versions PHP 7.3, )
-Run docker command.
+
+### Configuration
+
+Go edit your .env files, first inside `../yourproject/laradock/.env` find your database settings and change them if you wish.
+```angular2html
+MYSQL_DATABASE=default
+MYSQL_USER=default
+MYSQL_PASSWORD=secret
+```
+
+Go to your `../yourproject/.env`, change your DB settings accordingly.
+```
+DB_CONNECTION=mysql
+DB_HOST=laradock_mysql_1 // Your docker mysql container name.
+DB_PORT=3306
+DB_DATABASE=default // MYSQL_DATABASE
+DB_USERNAME=default // MYSQL_PASSWORD
+DB_PASSWORD=secret  // MYSQL_PASSWORD
+```
+
+Note: Development versions PHP 7.3
+
+### Next steps
+
+Run the following docker commands.
 ```
 docker-compose up -d nginx mysql phpmyadmin redis workspace 
+```
+
+Now that you've built your containers you need to get inside your workspace.
+```
+docker exec -it laradock_workspace_1 /bin/bash
+```
+
+So now run the following commands to install autoload dependencies.
+```
+composer install
 ```
 
 Use the migration to install the database.
 ```
 php artisan migrate
+```
+
+Use the yarn command or npm to install.
+```
+yarn
 ```
 
 Use yarn for JavaScript and SCSS to compile.
