@@ -24,7 +24,7 @@ class VenueFactory extends Factory
      */
     public function definition()
     {
-        $address = Address::firstWhere('id', $this->faker->numberBetween(1, 100));
+        $address = Address::firstWhere('id', $this->faker->numberBetween(1, 200));
         if (!$address) {
             $address = Address::factory()->create();
         }
