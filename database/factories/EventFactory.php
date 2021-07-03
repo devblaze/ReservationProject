@@ -44,7 +44,7 @@ class EventFactory extends Factory
             'name' => $this->faker->company,
             'type' => "Party of " . $this->faker->creditCardType,
             'description' => $this->faker->sentence(6, true),
-            'end_time' => $this->faker->dateTimeBetween($startDate, $endDate, $timezone),
+            'end_time' => $this->faker->dateTimeBetween($startDate, $endDate,  ),
             'venue_id' => $venue->id,
             'user_id' => $user->id
         ];

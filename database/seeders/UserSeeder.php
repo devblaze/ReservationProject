@@ -20,5 +20,9 @@ class UserSeeder extends Seeder
             'email'    => 'admin@admin',
             'password' => Hash::make('admin')
         ]);
+
+        $this->call([
+            RoleUserSeeder::class
+        ]);
     }
 }

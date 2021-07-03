@@ -77,13 +77,19 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('user_profile') }}"><i class="fas fa-user"></i> Your Profile</a>
                                 <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-ticket-alt"></i> Your Reservations</a>
+                                @if (Auth::user()->isAdmin())
                                 <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-toolbox"></i> Admin Panel</a>
+                                @endif
+                                @if (Auth::user()->isVenueAdmin())
                                 <hr>
                                 <a class="dropdown-item" href="{{ route('venue_create') }}"><i class="fas fa-plus"></i> Create New Venue</a>
                                 <a class="dropdown-item" href="{{ route('venue_list') }}"><i class="far fa-list-alt"></i> Your Venue List</a>
+                                @endif
+                                @if (Auth::user()->isEventAdmin())
                                 <hr>
                                 <a class="dropdown-item" href="{{ route('event_create') }}"><i class="fas fa-plus"></i> Create New Event</a>
                                 <a class="dropdown-item" href="{{ route('event_list') }}"><i class="far fa-list-alt"></i> Your Event List</a>
+                                @endif
                                 <hr>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -103,7 +109,7 @@
     </nav>
 
     <main class="py-4">
-        <div class="container" style="padding: 0px">
+        <div class="container-fluid pl-1 pr-1">
             @yield('content')
         </div>
     </main>

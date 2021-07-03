@@ -2,43 +2,45 @@
 This is a Reservation project made to help people book their seats in many restaurants, theaters, etc.
 It's the combination of two other projects made into one organized and simpler to use.
 
-Below the creators of the projects that were combined into this one
+Mentioned below are the creators of the projects that were combined in order to make this project
 
 >- [Leonidas Antoniadis](https://github.com/Leonidas-Antoniadis/Reservations)
 >   - Reservations Project coded in Visual Studio IDE with C#.
 >- [Theodore Zervakis](https://github.com/btx-dev/Ticket-Manager)
 >   - Ticket Manager Project coded in Sublime Text Editor with PHP 7.4.
 
-The project's is developed with PHPStrong IDE
+The project's is developed with PHPStrong IDE.
 
-The project's backend technologies are the following
+### The project's backend technologies are the following:
 - [PHP 7.3](https://laravel.com/)
 - [Laravel](https://laravel.com/) Framework
+- [Algolia](https://www.algolia.com/) search & discovery hosted API
 
-The project's frontend technologies are the following
+### The project's frontend technologies are the following
 - [Vue.js](https://vuejs.org/) JavaScript Framework
 - [Bootstrap](https://getbootstrap.com/) CSS Framework
 - SCSS
 
 ***
 
-## xDebug Installation (Recommended for developers)
-In laradock there is a file called .env changed following lines.
+## xDebug Installation (Developers only)
+In laradock there is a file called `.env` search for 'xdebug' and set to `true` the following variables.
+<br>
 *(Line numbers might differ)*
-```bash
-line: 125 WORKSPACE_INSTALL_XDEBUG=true
-line: 211 PHP_FPM_INSTALL_XDEBUG=true
+```dotenv
+line 125: WORKSPACE_INSTALL_XDEBUG=true
+line 211: PHP_FPM_INSTALL_XDEBUG=true
 ```
 Go to laravel.conf.example into laradock folder to path `/nginx/sites/` copy it and remove ".exmaple"
 
 Go to the following files in path.
-```
+```xpath
 /php-fpm/xdebug.ini
 /workspace/xdebug.ini
 ```
 
 Change them to this:
-```
+```apacheconf
 xdebug.remote_host=docker.for.win.localhost
 xdebug.remote_connect_back=0
 xdebug.remote_port=9000
@@ -62,7 +64,7 @@ You just need to change ``xdebug.remote_host``, ``xdebug.remote_autostart``, ``x
 
 ***
 
-## PHPStorm Settings
+## PHPStorm Settings (Developers only)
 ### CLI Interpreter & Docker
 1. Go to Settings (Ctrl + Alt + S) -> Languages & Framework -> PHP -> CLI Interpreter -> Press the three dots (...)
 2. CLI Interpreter Window -> Press the plus icon from top left (+) -> From Docker, Vagrant, VM, WLS, Remote..
@@ -74,7 +76,7 @@ Image name: laradock_workspace:latest (Name of your Workspace)
 
 ### Servers
 Go to Settings (Ctrl + Alt + S) -> Languages & Framework -> PHP -> Servers
-```bash
+```apacheconf
 Host: localhost
 Port: 80
 Debugger: Xdebug
@@ -101,48 +103,56 @@ Use Laradock to run the project, place it inside the project.
 ### Configuration
 
 Go edit your .env files, first inside `../yourproject/laradock/.env` find your database settings and change them if you wish.
-```angular2html
+```dotenv
 MYSQL_DATABASE=default
 MYSQL_USER=default
 MYSQL_PASSWORD=secret
 ```
 
 Go to your `../yourproject/.env`, change your DB settings accordingly.
-```
+```dotenv
 DB_CONNECTION=mysql
-DB_HOST=laradock_mysql_1 // Your docker mysql container name.
+DB_HOST=laradock_mysql_1 # Your docker mysql container name.
 DB_PORT=3306
-DB_DATABASE=default // MYSQL_DATABASE
-DB_USERNAME=default // MYSQL_PASSWORD
-DB_PASSWORD=secret  // MYSQL_PASSWORD
+DB_DATABASE=default # MYSQL_DATABASE
+DB_USERNAME=default # MYSQL_PASSWORD
+DB_PASSWORD=secret  # MYSQL_PASSWORD
 ```
 
 Note: Development versions PHP 7.3
 
-### Next steps
+### Project setup steps
 
 Run the following docker commands.
-```
+```bash
 docker-compose up -d nginx mysql phpmyadmin redis workspace 
 ```
 
 Now that you've built your containers you need to get inside your workspace.
-```
+```bash
 docker exec -it laradock_workspace_1 /bin/bash
 ```
 
 So now run the following commands to install autoload dependencies.
-```
+```bash
 composer install
 ```
 
 Use the migration to install the database.
-```
+```bash
 php artisan migrate
 ```
 
-Use the yarn command or npm to install.
+After the migration you need to run the database seeders in order to create the first admin user.
 ```
+php artisan db:seed
+```
+This command will create a user with the following credentials:
+- Email: admin@admin
+- Password: admin
+
+Use the yarn command or npm to install.
+```bash
 yarn
 ```
 
@@ -152,18 +162,29 @@ yarn dev
 ```
 _*And don't forget to configure your .env file._
 
+### Algolia setup steps
+
+Go into your algolia account at API Keys -> copy your Application ID and Admin API Key. <br>
+Edit `.env` file at the end of the file insert the following two lines:
+```dotenv
+ALGOLIA_APP_ID=<Application ID>
+ALGOLIA_SECRET=<Admin API Key>
+```
+
 ***
 
-## Frontend
+## Frontend (Developers only)
 If you want to change something to the front end, JavaScript or SCSS you can use:
-```
-yarn watch OR npm watch
+```bash
+yarn watch
+npm watch
 ```
 In order for your JS, SCSS files to be updated/compiled everytime without using each time
 ```bash
-yarn OR npm run dev
+yarn
+npm run dev
 ```
-*Note: Using ``yarn`` because it's quite faster than ``npm``.*-
+*Note: Using ``yarn`` because it's quite faster than ``npm``.*
 
 ***
 

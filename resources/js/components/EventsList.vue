@@ -15,12 +15,16 @@
                     </div>
                 </div>
 
+                <div class="col-1">
+
+                </div>
+
                 <div class="col">
                     <div class="row">
                         <div class="search-panel__results">
                             <ais-search-box placeholder="Search events by name / type / location" class="searchbox" />
 
-                            <ais-configure :hits-per-page.camel="9" />
+                            <ais-configure :hits-per-page.camel="12" />
                             <ais-hits :transform-items="transformItems">
                                 <div class="row" slot-scope="{ items, sendEvent }">
                                     <div class="col my-3" v-for="item in items" :key="item.objectID">
@@ -77,8 +81,8 @@ export default {
     data() {
         return {
             searchClient: algoliasearch(
-                '5NTWW4SNW1',
-                'e9a035e2d1ded057cf6a8c8b650708ed'
+                '2FKY9VB9XT',
+                '89cdaafa1cca7895d6e665417e3e9313'
             ),
         };
     },

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -43,6 +44,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function isAdmin(): bool
+    {
+        return $this->roles()->where('label', 'Admin')->exists();
+    }
+
+    public function isVenueAdmin(): bool
+    {
+        return $this->roles()->where('label', 'VenueAdmin')->exists();
+    }
+
+    public function isEventAdmin(): bool
+    {
+        return $this->roles()->where('label', 'EventAdmin')->exists();
+    }
+
     /**
      * A User has one or more roles. (ex. Nick is [User, Author, Moderator])
      *
@@ -50,7 +66,7 @@ class User extends Authenticatable
      */
     public function roles(): belongsToMany
     {
-        return $this->belongsToMany(Role::class)->withTimestamps();
+        return $this->belongsToMany(Role::class, 'role_user');
     }
 
     /**
