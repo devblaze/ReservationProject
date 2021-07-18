@@ -26,7 +26,7 @@
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
@@ -43,14 +43,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Past Events</a>
                     </li>
-                </ul>
-
-                <!-- Center of the Navbar -->
-                <ul class="navbar-nav mc-auto">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
                 </ul>
 
                 <!-- Right side of navbar -->
@@ -77,8 +69,8 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('user_profile') }}"><i class="fas fa-user"></i> Your Profile</a>
                                 <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-ticket-alt"></i> Your Reservations</a>
-                                @if (Auth::user()->isAdmin())
-                                    <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-toolbox"></i> Admin Panel</a>
+                                @if (Auth::user()->isAdmin() || Auth::user()->isEventAdmin() || Auth::user()->isVenueAdmin())
+                                    <a class="dropdown-item" href="{{ route('admin_panel') }}"><i class="fas fa-toolbox"></i> Admin Panel</a>
                                 @endif
                                 @if (Auth::user()->isVenueAdmin())
                                     <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-toolbox"></i> Venuw Admin Panel</a>
@@ -90,7 +82,6 @@
                                     <hr>
                                     <a class="dropdown-item" href="{{ route('event_create') }}"><i class="fas fa-plus"></i> Create New Event</a>
                                     <a class="dropdown-item" href="{{ route('event_list') }}"><i class="far fa-list-alt"></i> Your Event List</a>
-                                @endif
                                 <hr>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
@@ -108,6 +99,8 @@
             </div>
         </div>
     </nav>
+
+    @yield('dashboard')
 
     <main class="py-4">
         <div class="container-fluid pl-1 pr-1">
