@@ -86,7 +86,6 @@
                                 <hr>
                                 <a class="dropdown-item" href="{{ route('venue_create') }}"><i class="fas fa-plus"></i> Create New Venue</a>
                                 <a class="dropdown-item" href="{{ route('venue_list') }}"><i class="far fa-list-alt"></i> Your Venue List</a>
-                                @endif
                                 @if (Auth::user()->isEventAdmin())
                                     <hr>
                                     <a class="dropdown-item" href="{{ route('event_create') }}"><i class="fas fa-plus"></i> Create New Event</a>

@@ -12,7 +12,7 @@ Mentioned below are the creators of the projects that were combined in order to 
 The project's is developed with PHPStrong IDE.
 
 ### The project's backend technologies are the following:
-- [PHP 7.3](https://laravel.com/)
+- [PHP 8.0](https://www.php.net/releases/8.0/en.php)
 - [Laravel](https://laravel.com/) Framework
 - [Algolia](https://www.algolia.com/) search & discovery hosted API
 
