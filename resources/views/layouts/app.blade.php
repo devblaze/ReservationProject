@@ -81,12 +81,11 @@
                                     <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-toolbox"></i> Admin Panel</a>
                                 @endif
                                 @if (Auth::user()->isVenueAdmin())
-                                    <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-toolbox"></i> Admin Panel</a>
+                                    <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-toolbox"></i> Venuw Admin Panel</a>
                                 @endif
                                 <hr>
                                 <a class="dropdown-item" href="{{ route('venue_create') }}"><i class="fas fa-plus"></i> Create New Venue</a>
                                 <a class="dropdown-item" href="{{ route('venue_list') }}"><i class="far fa-list-alt"></i> Your Venue List</a>
-                                @endif
                                 @if (Auth::user()->isEventAdmin())
                                     <hr>
                                     <a class="dropdown-item" href="{{ route('event_create') }}"><i class="fas fa-plus"></i> Create New Event</a>
