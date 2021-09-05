@@ -15,14 +15,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $userId = DB::table('users')->insertGetId([
             'username' => 'admin',
             'email'    => 'admin@admin',
             'password' => Hash::make('admin')
         ]);
 
-        $this->call([
-            RoleUserSeeder::class
-        ]);
+        $this->callWith(RoleUserSeeder::class, ['userId' => $userId]);
     }
 }
