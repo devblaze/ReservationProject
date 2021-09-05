@@ -26,6 +26,7 @@
     "dependencies": {
         "algoliasearch": "^4.9.1",
         "instantsearch.css": "^7.4.5",
+        "vue-grid-layout": "^2.3.12",
         "vue-instantsearch": "^3.7.0"
     }
 }
