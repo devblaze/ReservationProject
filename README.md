@@ -154,6 +154,11 @@ Use yarn for JavaScript and SCSS to compile.
 yarn dev
 ```
 
+### Common error's fix list
+- [ERROR: Service 'workspace' failed to build : Build failed](https://github.com/laradock/laradock/issues/3103#issuecomment-974316464)
+- [MySQL not starting](https://github.com/laradock/laradock/issues/1138#issuecomment-333332386), change project data path from .env `DATA_PATH_HOST=~/.laradock/<project_name>/data`
+- [ERR_OSSL_EVP_UNSUPPORTED](https://github.com/webpack/webpack/issues/14532#issuecomment-947515866), if you run `yarn watch` and get the following error just run `export NODE_OPTIONS=--openssl-legacy-provider` at laradock workspace.
+
 ## Database setup
 
 Use the migration to install the database.
