@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
 </head>
-<body>
+<body style="background-color: gray">
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
@@ -47,10 +47,7 @@
 
                 <!-- Center of the Navbar -->
                 <ul class="navbar-nav mc-auto">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+
                 </ul>
 
                 <!-- Right side of navbar -->
@@ -75,23 +72,25 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('user_profile') }}"><i class="fas fa-user"></i> Your Profile</a>
-                                <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-ticket-alt"></i> Your Reservations</a>
+                                <a class="dropdown-item" href="{{ route('user_profile') }}"><i class="fas fa-user"></i>
+                                    Your Profile</a>
+                                <a class="dropdown-item" href="{{ route('user_reservation') }}"><i
+                                        class="fas fa-ticket-alt"></i> Your Reservations</a>
+                                <hr>
+                                <a class="dropdown-item" href="{{ route('venue_create') }}"><i class="fas fa-plus"></i>
+                                    Create New Venue</a>
+                                <a class="dropdown-item" href="{{ route('venue_list') }}"><i
+                                        class="far fa-list-alt"></i> Your Venue List</a>
+                                <hr>
+                                <a class="dropdown-item" href="{{ route('event_create') }}"><i class="fas fa-plus"></i>
+                                    Create New Event</a>
+                                <a class="dropdown-item" href="{{ route('event_list') }}"><i
+                                        class="far fa-list-alt"></i> Your Event List</a>
+                                <hr>
                                 @if (Auth::user()->isAdmin())
-                                    <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-toolbox"></i> Admin Panel</a>
+                                    <a class="dropdown-item" href="{{ route('user_reservation') }}"><i
+                                            class="fas fa-toolbox"></i> Admin Panel</a>
                                 @endif
-                                @if (Auth::user()->isVenueAdmin())
-                                    <a class="dropdown-item" href="{{ route('user_reservation') }}"><i class="fas fa-toolbox"></i> Venuw Admin Panel</a>
-                                @endif
-                                <hr>
-                                <a class="dropdown-item" href="{{ route('venue_create') }}"><i class="fas fa-plus"></i> Create New Venue</a>
-                                <a class="dropdown-item" href="{{ route('venue_list') }}"><i class="far fa-list-alt"></i> Your Venue List</a>
-                                @if (Auth::user()->isEventAdmin())
-                                    <hr>
-                                    <a class="dropdown-item" href="{{ route('event_create') }}"><i class="fas fa-plus"></i> Create New Event</a>
-                                    <a class="dropdown-item" href="{{ route('event_list') }}"><i class="far fa-list-alt"></i> Your Event List</a>
-                                @endif
-                                <hr>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

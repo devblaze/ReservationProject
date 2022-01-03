@@ -2,14 +2,15 @@
     <div class="container">
         <grid-layout
             :layout.sync="layout"
-            :col-num="50"
-            :row-height="0"
-            :is-draggable="true"
-            :is-resizable="false"
-            :is-mirrored="false"
-            :vertical-compact="true"
-            :margin="[10, 10]"
+            :col-num="column"
+            :row-height="1"
+            :is-draggable="draggable"
+            :is-resizable="resizable"
+            :responsive="false"
+            :vertical-compact="false"
+            :prevent-collision="true"
             :use-css-transforms="true"
+            :margin=[5,5]
         >
 
             <grid-item v-for="item in layout"
@@ -34,32 +35,203 @@ export default {
         GridItem: VueGridLayout.GridItem
     },
 
+    props: {
+        // seats: Object,
+        seats: Array,
+        candrag: false
+    },
+
     data() {
         return {
-            layout: [
-                {"x": 0, "y": 0, "w": 2, "h": 2, "i": "0"},
-                {"x": 2, "y": 0, "w": 2, "h": 4, "i": "1"},
-                {"x": 4, "y": 0, "w": 2, "h": 5, "i": "2"},
-                {"x": 6, "y": 0, "w": 2, "h": 3, "i": "3"},
-                {"x": 8, "y": 0, "w": 2, "h": 3, "i": "4"},
-                {"x": 10, "y": 0, "w": 2, "h": 3, "i": "5"},
-                {"x": 0, "y": 5, "w": 2, "h": 5, "i": "6"},
-                {"x": 2, "y": 5, "w": 2, "h": 5, "i": "7"},
-                {"x": 4, "y": 5, "w": 2, "h": 5, "i": "8"},
-                {"x": 6, "y": 3, "w": 2, "h": 4, "i": "9"},
-                {"x": 8, "y": 4, "w": 2, "h": 4, "i": "10"},
-                {"x": 10, "y": 4, "w": 2, "h": 4, "i": "11"},
-                {"x": 0, "y": 10, "w": 2, "h": 5, "i": "12"},
-                {"x": 2, "y": 10, "w": 2, "h": 5, "i": "13"},
-                {"x": 4, "y": 8, "w": 2, "h": 4, "i": "14"},
-                {"x": 6, "y": 8, "w": 2, "h": 4, "i": "15"},
-                {"x": 8, "y": 10, "w": 2, "h": 5, "i": "16"},
-                {"x": 10, "y": 4, "w": 2, "h": 2, "i": "17"},
-                {"x": 0, "y": 9, "w": 2, "h": 3, "i": "18"},
-                {"x": 2, "y": 6, "w": 2, "h": 2, "i": "19"}
-            ]
+            layout: this.seats,
+            // layout: [
+            //     {
+            //         "x": 0,
+            //         "y": 0,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "0",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 2,
+            //         "y": 0,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "1",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 4,
+            //         "y": 0,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "2",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 6,
+            //         "y": 0,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "3",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 8,
+            //         "y": 0,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "4",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 10,
+            //         "y": 0,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "5",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 0,
+            //         "y": 5,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "6",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 2,
+            //         "y": 5,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "7",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 4,
+            //         "y": 5,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "8",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 6,
+            //         "y": 3,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "9",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 8,
+            //         "y": 4,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "10",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 10,
+            //         "y": 4,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "11",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 0,
+            //         "y": 10,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "12",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 2,
+            //         "y": 10,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "13",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 4,
+            //         "y": 8,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "14",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 6,
+            //         "y": 8,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "15",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 8,
+            //         "y": 10,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "16",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 10,
+            //         "y": 4,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "17",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 0,
+            //         "y": 9,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "18",
+            //         static: false
+            //     },
+            //     {
+            //         "x": 2,
+            //         "y": 6,
+            //         "w": 2,
+            //         "h": 2,
+            //         "i": "19",
+            //         static: false
+            //     }
+            // ],
+            column: 100,
+            draggable: this.candrag,
+            resizable: false
         }
-
+    },
+    mounted() {
+        // this.$gridlayout.load();
+        this.index = this.layout.length;
+    },
+    methods: {
+        addItem: function () {
+            // Add a new item. It must have a unique key!
+            this.layout.push({
+                x: (this.layout.length * 2) % (this.colNum || 12),
+                y: this.layout.length + (this.colNum || 12), // puts it at the bottom
+                w: 2,
+                h: 2,
+                i: this.index,
+            });
+            // Increment the counter to ensure key is always unique.
+            this.index++;
+        },
+        removeItem: function (val) {
+            const index = this.layout.map(item => item.i).indexOf(val);
+            this.layout.splice(index, 1);
+        },
     }
 }
 </script>
