@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -101,5 +102,15 @@ class Event extends Model
     public function reservation(): HasMany
     {
         return $this->hasMany(Reservation::class);
+    }
+
+    /**
+     * An event has one sub area that belongs to.
+     *
+     * @return HasOne
+     */
+    public function subarea(): HasOne
+    {
+        return $this->hasOne(Subarea::class, 'subarea_id');
     }
 }

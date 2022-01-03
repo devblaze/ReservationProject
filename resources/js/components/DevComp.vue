@@ -36,9 +36,8 @@ export default {
     },
 
     props: {
-        // seats: Object,
         seats: Array,
-        candrag: false
+        candrag: Boolean
     },
 
     data() {
@@ -212,10 +211,18 @@ export default {
         }
     },
     mounted() {
+        // this.seats = JSON.parse(this.seats);
         // this.$gridlayout.load();
         this.index = this.layout.length;
+
+        // axios
+        //     .get('http://localhost/event/api/' . this.eventId)
+        //     .then(response => (this.seats = response));
     },
     methods: {
+        // getSeats() {
+        //     return this.seats = JSON.parse(this.propSeats);
+        // },
         addItem: function () {
             // Add a new item. It must have a unique key!
             this.layout.push({
@@ -232,7 +239,12 @@ export default {
             const index = this.layout.map(item => item.i).indexOf(val);
             this.layout.splice(index, 1);
         },
-    }
+    },
+
+    // created: function () {
+    //     this.getSeats();
+    // },
+
 }
 </script>
 

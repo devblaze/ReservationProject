@@ -17,6 +17,7 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('venue_id');
+            $table->unsignedBigInteger('subarea_id');
             $table->string('name');
             $table->string('type');
             $table->string('description')->nullable();

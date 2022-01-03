@@ -50,6 +50,7 @@ Route::middleware('auth')->group(static function () {
     Route::get('/event/{id}/cancel', [EventController::class, 'cancel'])->name('event_cancel');
     Route::get('/event/{id}/delete', [EventController::class, 'destroy'])->name('event_delete');
     Route::get('/event/{id}', [EventController::class, 'show'])->name('event_show');
+    Route::get('/event/api/{id}', [EventController::class, 'seats'])->name('event_seats');
 
     /**
      * Venue routes.

@@ -26,8 +26,6 @@ class Subarea extends Model
     ];
 
     /**
-     *
-     *
      * @return BelongsTo
      */
     public function venue(): BelongsTo
@@ -38,5 +36,10 @@ class Subarea extends Model
     public function seat(): HasMany
     {
         return $this->hasMany(Seat::class);
+    }
+
+    public function event(): HasMany
+    {
+        return $this->hasMany(Event::class);
     }
 }
