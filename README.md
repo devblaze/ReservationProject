@@ -108,6 +108,14 @@ MYSQL_DATABASE=default
 MYSQL_USER=default
 MYSQL_PASSWORD=secret
 ```
+Also change the `DATA_PATH_HOST` from the .env
+```dotenv
+DATA_PATH_HOST=~/.laradock/data
+
+Change to this:
+#DATA_PATH_HOST=~/.laradock/<Project Name>/data
+DATA_PATH_HOST=~/.laradock/ReservationProject/data
+```
 
 Go to your `../yourproject/.env`, change your DB settings accordingly.
 ```dotenv
