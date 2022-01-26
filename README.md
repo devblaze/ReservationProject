@@ -60,7 +60,7 @@ xdebug.var_display_max_data=-1
 xdebug.var_display_max_depth=-1
 ```
 
-You just need to change ``xdebug.remote_host``, ``xdebug.remote_autostart``, ``xdebug.remote_enable`` to "1" and `xdebug.remote_host=docker.for.win.localhost`.
+You just need to change ``xdebug.remote_autostart``, ``xdebug.remote_enable`` to `1` and `xdebug.remote_host` to `docker.for.win.localhost`.
 
 ***
 
