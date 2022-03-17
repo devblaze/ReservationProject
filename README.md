@@ -144,14 +144,16 @@ So now run the following commands to install autoload dependencies.
 composer install
 ```
 
-Use the yarn command or npm to install.
+Use the yarn command or npm to install, but it's necessary the first time to run npm.
 ```bash
 yarn
+npm install
 ```
 
 Use yarn for JavaScript and SCSS to compile.
 ```bash
 yarn dev
+npm run dev
 ```
 
 ### Common error's fix list

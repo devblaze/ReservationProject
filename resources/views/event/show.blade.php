@@ -11,8 +11,8 @@
                         <h5 class="card-title">{{ $event->name }}</h5>
                         {{ $event->description }}
                         <p class="card-text">Choose your seat</p>
-{{--                        <dev-comp v-bind:candrag="false" v-bind:seats="{{ $event->arrayTest }}"></dev-comp>--}}
-                        <seats v-bind:candrag="false" v-bind:seats="{{ $event->arrayTest }}"></seats>
+                        <dev-comp></dev-comp>
+{{--                        <seats v-bind:candrag="false" v-bind:seats="{{ $event->arrayTest }}"></seats>--}}
 {{--                        <seat-reservation candrag=0 seats="{{ $event->arrayTest }}"></seat-reservation>--}}
                         <p class="card-text"><small class="text-muted">Last updated {{ $event->last_updated }} ago.</small></p>
                     </div>

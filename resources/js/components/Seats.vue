@@ -10,10 +10,11 @@
             :vertical-compact="false"
             :prevent-collision="true"
             :use-css-transforms="true"
-            :margin=[5,5]
+            :margin=[10,10]
         >
 
             <grid-item v-for="item in layout"
+                       :style="{background: item.color === 1 ? 'red' : 'green'}"
                        :x="item.x"
                        :y="item.y"
                        :w="item.w"

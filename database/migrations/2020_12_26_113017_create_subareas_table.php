@@ -18,10 +18,7 @@ class CreateSubareasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('venue_id');
             $table->string('name');
-            $table->string('width');
-            $table->string('height');
-            $table->string('top');
-            $table->string('bottom');
+            $table->tinyInteger('size', false, true);
             $table->timestamps();
 
             $table->foreign('venue_id')

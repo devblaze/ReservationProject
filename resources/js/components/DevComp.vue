@@ -1,257 +1,65 @@
 <template>
     <div class="container">
-        <grid-layout
-            :layout.sync="layout"
-            :col-num="column"
-            :row-height="1"
-            :is-draggable="draggable"
-            :is-resizable="resizable"
-            :responsive="false"
-            :vertical-compact="false"
-            :prevent-collision="true"
-            :use-css-transforms="true"
-            :margin=[5,5]
-        >
 
-            <grid-item v-for="item in layout"
-                       :x="item.x"
-                       :y="item.y"
-                       :w="item.w"
-                       :h="item.h"
-                       :i="item.i"
-                       :key="item.i">
-                {{ item.i }}
-            </grid-item>
-        </grid-layout>
     </div>
 </template>
 
 <script>
-import VueGridLayout from 'vue-grid-layout';
-
-export default {
-    components: {
-        GridLayout: VueGridLayout.GridLayout,
-        GridItem: VueGridLayout.GridItem
-    },
-
-    props: {
-        seats: Array,
-        candrag: Boolean
-    },
-
-    data() {
-        return {
-            layout: this.seats,
-            // layout: [
-            //     {
-            //         "x": 0,
-            //         "y": 0,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "0",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 2,
-            //         "y": 0,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "1",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 4,
-            //         "y": 0,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "2",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 6,
-            //         "y": 0,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "3",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 8,
-            //         "y": 0,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "4",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 10,
-            //         "y": 0,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "5",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 0,
-            //         "y": 5,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "6",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 2,
-            //         "y": 5,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "7",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 4,
-            //         "y": 5,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "8",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 6,
-            //         "y": 3,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "9",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 8,
-            //         "y": 4,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "10",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 10,
-            //         "y": 4,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "11",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 0,
-            //         "y": 10,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "12",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 2,
-            //         "y": 10,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "13",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 4,
-            //         "y": 8,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "14",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 6,
-            //         "y": 8,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "15",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 8,
-            //         "y": 10,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "16",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 10,
-            //         "y": 4,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "17",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 0,
-            //         "y": 9,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "18",
-            //         static: false
-            //     },
-            //     {
-            //         "x": 2,
-            //         "y": 6,
-            //         "w": 2,
-            //         "h": 2,
-            //         "i": "19",
-            //         static: false
-            //     }
-            // ],
-            column: 100,
-            draggable: this.candrag,
-            resizable: false
+var canvas = new fabric.Canvas('c');
+$("#create").click(function () {
+    if ($("#Row").val() != 0 && $("#Col").val() != 0) {
+        var nextRow = 0;
+        var nextCol = 0;
+        for (var r = 0; r < $("#Row").val(); r++) {
+            nextRow = 0;
+            console.log("row:"+r);
+            for (var c = 0; c < $("#Col").val(); c++) {
+                console.log("col:"+c);
+                var name = "Row:" + r + "-Col:" + c;
+                var rect = new fabric.Rect({
+                    width: 50,
+                    height: 50,
+                    left: 100 + nextRow,
+                    top: 100 +nextCol,
+                    fill: 'grey',
+                    scaleY: 0.5,
+                    id:name,
+                    originX: 'center',
+                    originY: 'center'
+                });
+                nextRow = nextRow + 60;
+                canvas.add(rect);
+            }
+            nextCol = nextCol+35;
         }
-    },
-    mounted() {
-        // this.seats = JSON.parse(this.seats);
-        // this.$gridlayout.load();
-        this.index = this.layout.length;
+    }
+});
+$("#save").click(function () {
+    var tmp = {};
+    var seats = [];
 
-        // axios
-        //     .get('http://localhost/event/api/' . this.eventId)
-        //     .then(response => (this.seats = response));
-    },
-    methods: {
-        // getSeats() {
-        //     return this.seats = JSON.parse(this.propSeats);
-        // },
-        addItem: function () {
-            // Add a new item. It must have a unique key!
-            this.layout.push({
-                x: (this.layout.length * 2) % (this.colNum || 12),
-                y: this.layout.length + (this.colNum || 12), // puts it at the bottom
-                w: 2,
-                h: 2,
-                i: this.index,
-            });
-            // Increment the counter to ensure key is always unique.
-            this.index++;
-        },
-        removeItem: function (val) {
-            const index = this.layout.map(item => item.i).indexOf(val);
-            this.layout.splice(index, 1);
-        },
-    },
+    var canvasObjects = canvas.getObjects();
+    for (obj in canvasObjects) {
+        if (canvasObjects[obj].get('type') == 'rect') {
+            tmp.top = canvasObjects[obj].get('top');
+            tmp.left = canvasObjects[obj].get('left');
+            tmp.Name = canvasObjects[obj].get('id');
+            seats.push(tmp);
 
-    // created: function () {
-    //     this.getSeats();
-    // },
-
-}
+            tmp = {};
+        }
+    }
+    console.log(JSON.stringify(seats));
+    $.ajax(
+        {
+            type: "post",
+            url: '@Url.Action("CreateTableMap", "Seat",new { subAreaId = ViewBag.subAreaId })',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(seats),
+            success: function (data) { alert("saved"); },
+            error: function (data) { alert("fail to save");},
+            accept: 'application/json'
+        })
+});
 </script>
-
-<style>
-.container .vue-grid-item {
-    background: green;
-    width: 25px !important;
-    height: 25px !important;
-}
-</style>
