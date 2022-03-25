@@ -81,9 +81,13 @@ export default {
     data() {
         return {
             searchClient: algoliasearch(
-                '2FKY9VB9XT',
-                '89cdaafa1cca7895d6e665417e3e9313'
+                'R49QTG9EJ1',
+                'd8638ff4f3f3028871827762163ab767'
             ),
+            // searchClient: algoliasearch(
+            //     '2FKY9VB9XT',
+            //     '89cdaafa1cca7895d6e665417e3e9313'
+            // ),
         };
     },
 };

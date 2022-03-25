@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@vue/server-renderer": "^3.2.31",
         "algoliasearch": "^4.9.1",
         "instantsearch.css": "^7.4.5",
         "vue-grid-layout": "^2.3.12",
