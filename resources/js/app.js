@@ -14,8 +14,6 @@ Vue.use(InstantSearch);
 let app = new Vue ({
     el: '#app',
 
-    render: h => h(EventsList),
-
     components: {
         ExampleComponent,
         Notification,
