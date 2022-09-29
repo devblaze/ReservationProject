@@ -17,7 +17,7 @@ class CreateSubareasTable extends Migration
         Schema::create('subareas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('venue_id');
-            $table->string('name');
+            $table->longText('name');
             $table->tinyInteger('size', false, true);
             $table->timestamps();
 

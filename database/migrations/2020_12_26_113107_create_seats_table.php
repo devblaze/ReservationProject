@@ -19,7 +19,7 @@ class CreateSeatsTable extends Migration
             $table->unsignedBigInteger('subarea_id');
             $table->integer('x');
             $table->integer('y');
-            $table->string('status');
+            $table->longText('status');
             $table->timestamps();
 
             $table->foreign('subarea_id')

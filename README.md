@@ -119,7 +119,7 @@ DB_USERNAME=default # MYSQL_PASSWORD
 DB_PASSWORD=secret  # MYSQL_PASSWORD
 ```
 
-Note: Development versions PHP 7.3
+Note: Development versions PHP 7.4, 7.3
 
 ### Project setup steps
 
@@ -131,7 +131,16 @@ docker-compose up -d nginx mysql workspace
 Common error fix list:
 - [ERROR: Service 'workspace' failed to build : Build failed](https://github.com/laradock/laradock/issues/3103#issuecomment-974316464)
 - [MySQL not starting](https://github.com/laradock/laradock/issues/1138#issuecomment-333332386), change project data path from .env `DATA_PATH_HOST=~/.laradock/<project_name>/data`
-
+- [Different lower_case_table_names settings for server ('2') and data dictionary ('0')](https://stackoverflow.com/questions/64153426/laradock-mysql-container-exits0-different-lower-case-table-names-settings-fo)
+  - Close down all containers
+  - Try `fsutil file setCaseSensitiveInfo C:\Users\<User>\.laradock\data\mysql`
+  - If you get an error "The directory is not empty"
+    - Run docker container stop your_container_name 
+    - Transfer the contents of the folder to the another place (clear the folder)
+    - Run again `fsutil file setCaseSensitiveInfo C:\Users\<User>\.laradock\data\mysql`
+    - Transfer back saved data to the `C:\Users\<User>\.laradock\data\mysql` 
+    - Run docker container start your_container_name or just start your containers
+  
 Now that you've built your containers you need to get inside your workspace.
 ```bash
 docker exec -it <laradock-workspace-1> /bin/bash

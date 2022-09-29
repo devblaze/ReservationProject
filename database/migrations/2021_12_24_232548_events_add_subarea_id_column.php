@@ -13,17 +13,17 @@ class EventsAddSubareaIdColumn extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('subarea_id');
-            $table->unsignedBigInteger('subarea_id');
-
-            $table->foreign('subarea_id')
-                ->references('id')
-                ->on('subareas')
-                ->onDelete('cascade');
-        });
-        Schema::enableForeignKeyConstraints();
+//        Schema::disableForeignKeyConstraints();
+//        Schema::table('events', function (Blueprint $table) {
+//            $table->dropColumn('subarea_id');
+//            $table->unsignedBigInteger('subarea_id');
+//
+//            $table->foreign('subarea_id')
+//                ->references('id')
+//                ->on('subareas')
+//                ->onDelete('cascade');
+//        });
+//        Schema::enableForeignKeyConstraints();
     }
 
     /**

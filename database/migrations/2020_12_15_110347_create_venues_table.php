@@ -17,10 +17,10 @@ class CreateVenuesTable extends Migration
         Schema::create('venues', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name');
+            $table->longText('name');
             $table->unsignedBigInteger('address_id');
             $table->integer('subareas')->nullable();
-            $table->string('img_url')->nullable();
+            $table->longText('img_url')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

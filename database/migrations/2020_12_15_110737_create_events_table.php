@@ -18,11 +18,11 @@ class CreateEventsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('venue_id');
             $table->unsignedBigInteger('subarea_id');
-            $table->string('name');
-            $table->string('type');
+            $table->longText('name');
+            $table->longText('type');
             $table->string('description')->nullable();
             $table->string('status')->default('active');
-            $table->string('end_time');
+            $table->longText('end_time');
             $table->timestamps();
         });
     }

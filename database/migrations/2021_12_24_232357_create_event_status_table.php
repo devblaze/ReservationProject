@@ -15,7 +15,7 @@ class CreateEventStatusTable extends Migration
     {
         Schema::create('event_status', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->longText('name');
             $table->timestamps();
         });
     }

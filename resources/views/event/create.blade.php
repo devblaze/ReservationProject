@@ -42,6 +42,8 @@
                                 </div>
                             </div>
 
+{{--                            <seats v-bind:candrag="true" v-bind:seats="{{ $event->arrayTest }}"></seats>--}}
+
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>
 

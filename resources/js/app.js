@@ -8,6 +8,11 @@ import EventsList from "./components/EventsList";
 import SeatReservation from "./components/SeatReservation";
 import DevComp from "./components/DevComp";
 import Seats from "./components/Seats";
+import Table from "./components/Table";
+import Box from "./components/Box";
+import CUForm from "./components/CUForm";
+import Label from "./components/Label";
+import Wrapper from "./components/Wrapper";
 
 Vue.use(InstantSearch);
 
@@ -21,6 +26,11 @@ let app = new Vue ({
         EventsList,
         SeatReservation,
         DevComp,
-        Seats
+        Seats,
+        Table,
+        Box,
+        CUForm,
+        Label,
+        Wrapper
     }
 });
