@@ -24,3 +24,5 @@ Homestead.json
 /laradock-b
 
 laradock-a
+
+*.lock
