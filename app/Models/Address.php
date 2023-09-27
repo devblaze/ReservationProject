@@ -34,4 +34,8 @@ class Address extends Model
     {
         return $this->hasMany(Venue::class);
     }
+
+//FastCGI sent in stderr: "PHP message: Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms.
+//Tried: host.docker.internal:9003 (through xdebug.client_host/xdebug.client_port) :-(PHP message: PHP Parse error:  syntax error, unexpected '=' in /var/www/vendor/symfony/string/Resources/functions.php on line 34"
+//while reading response header from upstream, client: 172.25.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "fastcgi://172.25.0.5:9000", host: "localhost"
 }

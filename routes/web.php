@@ -21,7 +21,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [EventController::class, 'index'])->name('event_index');
 Route::get('/clearMessage', [EventController::class, 'clearMessage'])->name('clear_message');
-
+//Route::get('/test', function () {
+//    $client = Elastic\Elasticsearch\ClientBuilder::create()->build();
+//    var_dump($client);
+//});
 Auth::routes();
 
 Route::middleware('auth')->group(static function () {

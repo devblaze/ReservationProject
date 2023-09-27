@@ -1,3 +1,33 @@
+<!--<template>-->
+<!--    <div class="event-list">-->
+<!--        <div v-for="event in events" :key="event.id" class="event-tile">-->
+<!--            <h2>{{ event.title }}</h2>-->
+<!--            <p>{{ event.description }}</p>-->
+<!--            <p>{{ event.date }}</p>-->
+<!--            <p>{{ event.location }}</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</template>-->
+
+<!--<script>-->
+<!--export default {-->
+<!--    data() {-->
+<!--        return {-->
+<!--            events: [],-->
+<!--        };-->
+<!--    },-->
+<!--    mounted() {-->
+<!--        axios.get('/api/events')-->
+<!--            .then(response => {-->
+<!--                this.events = response.data;-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--                console.log(error);-->
+<!--            });-->
+<!--    },-->
+<!--};-->
+<!--</script>-->
+
 <template>
     <ais-instant-search
         :search-client="searchClient"

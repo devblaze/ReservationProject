@@ -136,6 +136,11 @@ class EventController extends Controller
         return redirect(route('event_list'));
     }
 
+    public function apiEvents(): Event
+    {
+        return Event::paginate(6);
+    }
+
     public function clearMessage(): void
     {
         session()->forget('type');

@@ -113,9 +113,9 @@
             @yield('content')
         </div>
     </main>
-    @if (session()->has('type'))
-        <notification type="{{ session('type') }}" message="{{ session('message') }}" timer="{{ session('messageTimer') }}"></notification>
-    @endif
+{{--    @if (session()->has('type'))--}}
+{{--        <notification type="{{ session('type') }}" message="{{ session('message') }}" timer="{{ session('messageTimer') }}"></notification>--}}
+{{--    @endif--}}
 </div>
 </body>
 </html>

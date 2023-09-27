@@ -15,8 +15,7 @@ class EventsAddSubareaIdColumn extends Migration
     {
         Schema::disableForeignKeyConstraints();
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('subarea_id');
-            $table->unsignedBigInteger('subarea_id');
+            $table->unsignedBigInteger('subarea_id')->after('id')->nullable();
 
             $table->foreign('subarea_id')
                 ->references('id')

@@ -17,9 +17,15 @@ class UserAccountController extends Controller
         $this->middleware('auth');
     }*/
 
+    public function index(): Renderable
+    {
+        return view('home');
+    }
+
     /**
      * Show the application dashboard.
      *
+     * @param Request $request
      * @return Renderable
      */
     public function profile(Request $request): Renderable

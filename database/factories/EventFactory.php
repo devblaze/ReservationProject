@@ -22,7 +22,7 @@ class EventFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         $startDate = 'now';
         $endDate = '+2 years';
